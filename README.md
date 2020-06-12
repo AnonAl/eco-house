@@ -1,4 +1,4 @@
-# Auction web application
+# ECO-HOUSE web application
 
 ## Server side
 

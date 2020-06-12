@@ -1,6 +1,6 @@
-CREATE DATABASE auction;
+CREATE DATABASE eco-house;
 
-\c auction;
+\c eco-house;
 
 CREATE TABLE users (
 	username varchar(50) NOT NULL UNIQUE,

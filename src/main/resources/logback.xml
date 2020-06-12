@@ -3,7 +3,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <append>true</append>
-        <file>${CATALINA_HOME}/logs/AUCTION.log</file>
+        <file>${CATALINA_HOME}/logs/ECO-HOUSE.log</file>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <Pattern>
                 %d{HH:mm:ss} %-5level %logger{36} - %msg%n

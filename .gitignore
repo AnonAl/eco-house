@@ -1,8 +1,8 @@
-auction-client-angular/node_modules/
+eco-house-client-angular/node_modules/
 server/logs/
 target/
 out/
-auction-client-angular/dist/
+eco-house-client-angular/dist/
 .idea/
 src/main/webapp
-auction.iml
+eco-house.iml
