@@ -1,0 +1,93 @@
+<div bsModal #userAuctionsModal="bs-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col col-sm-6">
+          <h4 id="dialog-bets" class="modal-title pull-left">{{ 'userOperations.auctions.header' | translate }}</h4>
+        </div>
+        <div class="col col-sm-3">
+          <h5 *ngIf="user" class="modal-title">{{user.userName}} </h5>
+        </div>
+        <div class="col col-sm-1">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideAuctionsModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          </div>
+      </div>
+      <div class="modal-body" *ngIf="!auctions;else unset">
+        <h5 class="modal-content">{{ 'userOperations.auctions.empty' | translate }}</h5>
+      </div>
+      <div class="modal-body" *ngFor="let auction of auctions" #unset>
+        <div class="btn" routerLink="/auctions/{{auction.id}}">
+          <div class="row">
+            <div class="col">
+              <b class="text pull-left">{{ 'userOperations.auctions.body.product' | translate }}</b>{{auction.product.name}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col"><b>{{ 'userOperations.auctions.body.createTime' | translate }}</b>{{auction.createTime | date:'dd.MM.yyyy HH:mm'}}</div>
+            <div class="col"><b>{{ 'userOperations.auctions.body.endTime' | translate }}</b>{{auction.endTime | date:'dd.MM.yyyy HH:mm'}}</div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <b class="text pull-left">{{ 'userOperations.auctions.body.status' | translate }}</b>
+              <span *ngIf="auction.finished" class="finished">{{ 'userOperations.auctions.body.finished' | translate }}</span>
+              <span *ngIf="!auction.finished" class="ongoing">{{ 'userOperations.auctions.body.ongoing' | translate }}</span>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #userBetsModal="bs-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="col col-4">
+          <h3 class="modal-title pull-left">{{ 'userOperations.bets.header' | translate }}</h3>
+        </div>
+        <div class="col ">
+          <h3 *ngIf="user" class="modal-title">{{user.userName}}</h3>
+        </div>
+        <div class="col col-sm-1">
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideBetsModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" *ngIf="!bets;else unset">
+        <h5 class="modal-content">{{ 'userOperations.bets.empty' | translate }}</h5>
+      </div>
+      <div class="modal-body" *ngFor="let bet of bets" #unset>
+        <div class="btn" routerLink="/auctions/{{bet.auction_id}}">
+          <div class="row">
+            <div class="col col-sm-5"><b>{{ 'userOperations.bets.body.date' | translate }}</b>{{bet.betTime | date:'dd.MM.yyyy HH:mm'}}</div>
+            <div class="col col-sm">
+              <a class="float-right">
+                <b>{{ 'userOperations.bets.body.price' | translate }}</b>{{bet.price}} $
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div bsModal #confirmDeleteModal="bs-modal" class="modal ">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <p>{{ 'userOperations.deleteConfirm.message' | translate }}</p>
+        <button type="button"
+                class="btn btn-danger"
+                (click)="confirmDeleteUser()" >{{ 'userOperations.deleteConfirm.yes' | translate }}</button>
+        <button type="button"
+                class="btn btn-primary"
+                (click)="declineDeleteUser()" >{{ 'userOperations.deleteConfirm.no' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</div>

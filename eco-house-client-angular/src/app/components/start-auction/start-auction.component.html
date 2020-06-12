@@ -1,0 +1,67 @@
+<div class="jumbotron jumbotron-fluid">
+  <div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col">
+      <h3>{{ 'startAuction.header' | translate }}</h3>
+    </div>
+  </div>
+</div>
+<br>
+<div>
+  <div class="col">
+    <h5>{{ 'startAuction.form.product.header' | translate }}</h5>
+    <div *ngIf="!newAuction.product">
+      <button class="btn btn-link" (click)="selectExistProduct()">
+        {{ 'startAuction.form.product.exist' | translate }}
+      </button>
+      {{ 'startAuction.form.product.or' | translate }}
+      <button class="btn btn-link" (click)="createNewProduct()">{{ 'startAuction.form.product.create' | translate }}</button>
+    </div>
+    <div *ngIf="newAuction.product">
+      {{newAuction.product.name}}
+      <button class="btn btn-link" (click)="editNewProduct()">
+        {{ 'startAuction.form.product.edit' | translate }}
+      </button>
+      {{ 'startAuction.form.product.or' | translate }}
+      <button class="btn btn-link" (click)="selectExistProduct()">{{ 'startAuction.form.product.exist' | translate }}</button>
+    </div>
+  </div>
+  <br>
+  <div class="col">
+    <h5>{{ 'startAuction.form.duration.label' | translate }}</h5>
+    <div class="btn-group">
+      <label class="btn btn-outline-info" [(ngModel)]="duration"
+             btnRadio=1 tabindex="0" role="button">{{ 'startAuction.form.duration.1d' | translate }}</label>
+      <label class="btn btn-outline-info" [(ngModel)]="duration"
+             btnRadio=3 tabindex="0" role="button">{{ 'startAuction.form.duration.3d' | translate }}</label>
+      <label class="btn btn-outline-info" [(ngModel)]="duration"
+             btnRadio=7 tabindex="0" role="button">{{ 'startAuction.form.duration.7d' | translate }}</label>
+    </div>
+  </div>
+  <br>
+  <div class="col">
+    <div class="row">
+      <div class="col col-sm-4">
+        <h5><label for="description">{{ 'startAuction.form.description' | translate }}</label></h5>
+        <textarea class="form-control"
+                  rows="5"
+                  id="description"
+                  [(ngModel)]="newAuction.description"
+                  maxlength="255"
+                  required></textarea>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="col">
+    <button
+      [disabled]="!newAuction.product
+      || !duration
+      || buttonLocked
+      || !newAuction.description"
+      class="btn btn-secondary"
+      (click)="startAuction(); buttonLocked = true">{{ 'startAuction.form.button' | translate }}
+    </button>
+  </div>
+</div>
+<app-product></app-product>

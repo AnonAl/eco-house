@@ -1,0 +1,67 @@
+<br>
+<div id="signDiv" *ngIf="!success" class="col-sm-6">
+  <h1>{{ 'signup.header' | translate }}</h1>
+  <form id="signUpForm" (ngSubmit)="onSubmit()" #signForm="ngForm">
+    <div class="col-sm-12 form-group">
+      <label for="username">{{ 'signup.username.label' | translate }}</label>
+      <input class="form-control form-control-sm"
+             type="text"
+             name="username"
+             id="username"
+             [(ngModel)]="signData.username"
+             #usernameInput="ngModel"
+             maxlength="50"
+             required>
+      <div id="usernameWarning" [hidden]="usernameInput.valid || usernameInput.pristine"
+           class="alert alert-danger">{{ 'signup.username.valid' | translate }}
+      </div>
+      <div id="usernameFailed" [hidden]="!userExist || usernameInput.pristine"
+           class="alert alert-danger">{{ 'signup.username.failed' | translate }}
+      </div>
+    </div>
+    <div class="col-sm-12 form-group">
+      <label for="password">{{ 'signup.password.label' | translate }}</label>
+      <input class="form-control form-control-sm"
+             type="password"
+             name="password"
+             id="password"
+             [(ngModel)]="signData.password"
+             #passwordInput="ngModel"
+             maxlength="255"
+             required>
+      <div id="passwordWarning" [hidden]="passwordInput.valid || passwordInput.pristine"
+           class="alert alert-danger">{{ 'signup.password.valid' | translate }}
+      </div>
+    </div>
+    <div class="col-sm-12 form-group">
+      <label for="confirm">{{ 'signup.confirm.label' | translate }}</label>
+      <input class="form-control form-control-sm"
+             type="password"
+             name="confirm"
+             id="confirm"
+             [(ngModel)]="signData.confirm"
+             #confirmInput="ngModel"
+             maxlength="255"
+             required>
+      <div id="confirmWarning" [hidden]="signData.confirm==signData.password || confirmInput.pristine"
+           class="alert alert-danger">{{ 'signup.confirm.valid' | translate }}
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <button id="buttonSignUp" class="btn btn-primary pull-right"
+              type="submit"
+              [disabled]="!signForm.form.valid || signData.confirm!==signData.password || buttonLocked">
+        {{ 'signup.button' | translate }}
+      </button>
+    </div>
+  </form>
+</div>
+<div id="successMess" *ngIf="success" class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h3>{{ 'signup.success.h3' | translate }}</h3>
+    <h5>{{ 'signup.success.h5' | translate }}</h5>
+    <button class="btn btn-link" (click)="mainPage()">
+      <h5>{{ 'signup.success.button' | translate }}</h5>
+    </button>
+  </div>
+</div>

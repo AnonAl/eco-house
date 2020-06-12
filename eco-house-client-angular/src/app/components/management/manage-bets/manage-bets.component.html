@@ -1,0 +1,39 @@
+<div class="container">
+  <br>
+  <h2>{{ 'management.bets.header' | translate }}</h2>
+  <table class="table table-sm">
+    <thead>
+    <tr>
+      <th>{{ 'management.bets.table.header.betId' | translate }}</th>
+      <th>{{ 'management.bets.table.header.auctionId' | translate }}</th>
+      <th>{{ 'management.bets.table.header.username' | translate }}</th>
+      <th>{{ 'management.bets.table.header.betTime' | translate }}</th>
+      <th>{{ 'management.bets.table.header.price' | translate }}</th>
+      <th class="table-danger">{{ 'management.bets.table.header.delete' | translate }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let bet of bets">
+      <td>{{bet.id}}</td>
+      <td><span class="btn btn-link" routerLink="/auctions/{{bet.auction_id}}">{{bet.auction_id}}</span></td>
+      <td>{{bet.user_name}}</td>
+      <td>{{bet.betTime | date:'dd.MM.yyyy HH:mm'}}</td>
+      <td>{{bet.price}}</td>
+      <td>
+        <span class="btn fa fa-times-rectangle-o dis" (click)="openConfirmDeleteModal(template); selectedBet=bet"></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>{{ 'management.bets.confirm.message' | translate }}</p>
+    <button type="button"
+            class="btn btn-default"
+            (click)="confirmDeleteBet()">{{ 'management.bets.confirm.yes' | translate }}</button>
+    <button type="button"
+            class="btn btn-primary"
+            (click)="declineDeleteBet()">{{ 'management.bets.confirm.no' | translate }}</button>
+  </div>
+</ng-template>
