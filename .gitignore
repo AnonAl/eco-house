@@ -4,5 +4,4 @@ target/
 out/
 eco-house-client-angular/dist/
 .idea/
-src/main/webapp
 eco-house.iml
